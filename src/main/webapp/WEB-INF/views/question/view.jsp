@@ -41,9 +41,12 @@
 
 <div class='btnSet'>
 	<a class='btn-fill' href='list.qu?curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}'>목록으로</a>
-	<!-- 본인의 문의만 수정/삭제 권한 부여 -->
+	<!-- 본인의 문의만 수정/삭제 권한 부여 // 혹은 관리자는 삭제 가능 -->
 	<c:if test="${loginInfo.member_code eq vo.board_member_code }">
 		<a class='btn-fill' href='modify.qu?board_code=${vo.board_code}'>수정</a>
+		<a class='btn-fill' onclick="if(confirm('정말 삭제하시겠습니까?')){location='delete.qu?board_code=${vo.board_code}'}">삭제</a>
+	</c:if>
+		<c:if test="${loginInfo.member_kind eq '1' }">
 		<a class='btn-fill' onclick="if(confirm('정말 삭제하시겠습니까?')){location='delete.qu?board_code=${vo.board_code}'}">삭제</a>
 	</c:if>
 </div>

@@ -59,6 +59,7 @@ public class MemberController {
 		MemberVO vo = service.member_login(map);
 		// 로그인한 회원정보를 세션에 담아둔다
 		session.setAttribute("loginInfo", vo);
+		
 		return vo == null ? false : true;
 	}
 

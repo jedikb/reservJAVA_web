@@ -10,36 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>Tip 보기</h3>
-<table>
-	<tr>
-		<th class='w-px120'>제목</th>
-		<td colspan='5' class='left'>${vo.board_subject}</td>
-	</tr>
-	<tr>
-		<th>작성자</th>
-		<td>${vo.member_name}</td>
-		<th class='w-px120'>작성일자</th>
-		<td class='w-px120'><fmt:formatDate value="${vo.board_update_date}" pattern="yyyy-MM-dd"/></td>
-		<th class='w-px60'>조회수</th>
-		<td class='w-px60'>${vo.board_readcount}</td>
-	</tr>
-	<tr>
-		<th>내용</th>
-		<td colspan='5' class='left'>${fn:replace(vo.board_content, crlf,'<br>')}</td>
-	</tr>
-	<tr>
-		<th>첨부파일</th>
-		<td colspan='5' class='left'>${vo.board_file}
-			<c:if test="${not empty vo.board_file}">
-				<span id='preview'></span>
-				<a href='download.tip?board_code=${vo.board_code}'><i class='fas fa-download'></i></a>
-			</c:if>
-		</td>	
-	</tr>
-</table>
-
-<div class='btnSet'>
+<h4>사장님을 위한 꿀팁모음</h4><div class='btnSet' >
 	<a class='btn-fill' href='list.tip?curPage=${page.curPage}&search=${page.search}&keyword=${page.keyword}'>목록으로</a>
 	<!-- 본인의 문의만 수정/삭제 권한 부여 -->
 	<c:if test="${loginInfo.member_code eq vo.board_member_code }">
@@ -47,6 +18,11 @@
 		<a class='btn-fill' onclick="if(confirm('정말 삭제하시겠습니까?')){location='delete.tip?board_code=${vo.board_code}'}">삭제</a>
 	</c:if>
 </div>
+
+		
+		<div style="margin: 30px auto; font-size: 24px; font-weight: bold;">${vo.board_subject}</div>
+		<div>${fn:replace(vo.board_content, crlf,'<br>')}</div>
+
 
 <form action="list.tip" method="post">
 	<input type="hidden" name="board_code" value='${vo.board_code}'/>

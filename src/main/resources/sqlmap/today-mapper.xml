@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="today.mapper">
+
+<select id="list" resultType="today.TodayVO">
+select b.booking_code, b.booking_kind, b.booking_num, b.booking_date_reservation, p.product_name, m.member_nick
+from tbl_ing_booking b inner join tbl_product p
+on b.booking_product_code = p.product_code
+inner join tbl_member m
+on b.booking_member_code = m.member_code
+where booking_business_code = #{business_code}
+and booking_kind = 3
+order by b.booking_date_reservation
+</select>
+
+<select id="busicode" resultType="business.BusinessVO">
+	select * from tbl_business
+	where business_member_code = #{member_code}
+</select>
+
+</mapper>

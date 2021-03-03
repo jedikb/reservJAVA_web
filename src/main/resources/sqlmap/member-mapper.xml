@@ -24,6 +24,10 @@
 	select * from TBL_MEMBER where member_id = #{member_id} and member_pw = #{member_pw}
 </select>
 
-
+<!-- 비지니스 코드 불러오기 -->
+<select id="busicode" resultType="business.BusinessVO">
+	select * from tbl_business
+	where business_member_code = #{member_code}
+</select>
 
 </mapper>

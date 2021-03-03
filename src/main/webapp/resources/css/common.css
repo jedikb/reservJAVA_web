@@ -199,7 +199,7 @@ textarea[name=content] {width:calc(100% - 6px); resize: none; height: 150px;}
 /* 그리드,, 중간에서 옮겨옴 */
 ul.grid {width:80%; margin:0 10% }
 .grid li {float: left; width: 32.5%; height: 270px; 
-					border: 1px solid gray; box-sizing: border-box;}
+					 box-sizing: border-box;}
 .grid li div { text-align: left; padding: 10px; display: block;
 							width:240px; height: 200px; font-weight: bold;}
 .grid li div img {  width:240px; height: 200px;

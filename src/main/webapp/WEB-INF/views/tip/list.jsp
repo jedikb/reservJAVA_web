@@ -15,29 +15,9 @@
 <form action="list.tip" method="post">
 <div>
 	<ul>
-		<li><select name='search' class='w-px80'>
-			<option value='all' ${page.search eq 'all' ? 'selected' : ''}>전체</option>
-			<option value='board_subject' ${page.search eq 'board_subject' ? 'selected' : ''}>제목</option>
-			<option value='board_content' ${page.search eq 'board_content' ? 'selected' : ''}>내용</option>
-			<option value='member_name' ${page.search eq 'member_name' ? 'selected' : ''}>작성자</option>
-			</select>
-		</li>
-		<li><input type="text" name='keyword' value='${page.keyword}' class='w-px300' />
-		</li>
-		<li><a class='btn-fill' onclick="$('form').submit()">검색</a></li>
-	</ul>
-	<ul>
-		<li>
-<!-- 			<select name='pageList' class='w-px80' -->
-<!-- 					onchange="$('[name=curPage]').val(1); $('form').submit()"> -->
-<%-- 				<option value='9' ${page.pageList eq 9 ? 'selected' : ''}>9개</option> --%>
-<%-- 				<option value='18' ${page.pageList eq 18 ? 'selected' : ''}>18개</option> --%>
-<%-- 				<option value='27' ${page.pageList eq 27 ? 'selected' : ''}>27개</option> --%>
-<!-- 			</select> -->
-		</li>		
 		<!-- Tip 게시판은 그리드로 한다 -->		
-		<!-- 로그인한 경우 글쓰기 가능 -->
-		<c:if test="${!empty loginInfo}">
+		<!-- 관리자만 글쓰기 가능 -->
+		<c:if test="${loginInfo.member_kind eq '1'}">
 			<li><a class='btn-fill' href='new.tip'>글쓰기</a></li>
 		</c:if>
 	</ul>

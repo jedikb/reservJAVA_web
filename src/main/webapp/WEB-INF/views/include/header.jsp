@@ -44,16 +44,20 @@
 	</div>
 	<div style="position:absolute; right:50px; top:14px; margin-right:0px">
 		<ul>
+		
 			<!-- 로그인하지 않은 경우 -->
 			<c:if test="${empty loginInfo}">
-			<li><a class='btn-fill' href='login'>로그인</a></li>
-			<li><a class='btn-fill' href='join'>회원가입</a></li>
+				<li><a class='btn-fill' href='login'>로그인</a></li>
+				<li><a class='btn-fill' href='join'>회원가입</a></li>
 			</c:if>
 			<!-- 로그인 한 경우 -->
 			<c:if test="${!empty loginInfo}">
-			<li style='padding-right:10px'><strong>${loginInfo.member_name }</strong>님</li>
-						<li><a class='btn-fill' href='login'>회원정보</a></li>
-			<li><a class='btn-fill' href='logout'>로그아웃</a></li>
+				<li>
+					<a href="list.today?member_code=${loginInfo.member_code}">오늘의 예약</a>
+				</li>
+				<li style='padding-right:10px'><strong>${loginInfo.member_name }</strong>님</li>
+				<li><a class='btn-fill' href='login'>회원정보</a></li>
+				<li><a class='btn-fill' href='logout'>로그아웃</a></li>
 			</c:if>
 		</ul>
 	</div>

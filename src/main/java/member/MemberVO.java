@@ -3,9 +3,17 @@ package member;
 import java.sql.Date;
 
 public class MemberVO {
+	//비지니스 코드가 여러 화면에서 쓰이므로 추가함
 	private String member_id, member_pw, member_name, member_nick, 
 					member_tel,member_email,member_addr,member_image;
-	private int member_code, member_kind;
+	private int member_code, member_kind, business_code;
+	public int getBusiness_code() {
+		return business_code;
+	}
+
+	public void setBusiness_code(int business_code) {
+		this.business_code = business_code;
+	}
 	private Date member_date, member_date_delete;
 	
 	public int getMember_code() {

@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<context:component-scan 
-				base-package="tip, question, business, common, main, member, notice, product, reservation"/>
+				base-package="today, tip, question, business, common, main, member, notice, product, reservation"/>
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		<import resource="classpath:data/default.xml" />
