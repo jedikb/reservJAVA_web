@@ -1,0 +1,211 @@
+@charset "UTF-8";
+  /* background: #f7f7f7 url("https://38.media.tumblr.com/c026c2203f47be8d0f3fb81f6c5aee25/tumblr_n2hutxfrNr1tubinno1_1280.jpg") no-repeat center center fixed; */
+body {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: "Roboto";
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin:0 auto;
+	text-align:center;
+}
+body::before {
+  content: '';
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  background: #e74c3c;
+  /* IE Fallback */
+  background: rgb(255, 255, 255)  ;
+  width: 100%;
+  height: 100%;
+}
+
+div ul {
+  /* background: #48cfad; */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+div ul li {
+  position: relative;
+  display: inline-block;
+  margin-right: -4px;
+  text-align: center;
+}
+div ul li:first-child a {
+  /* background: #37bc9b; */
+  width: 49px;
+  padding: 6px 0;
+}
+div ul li:last-child {
+  margin: 0;
+}
+div ul li a {
+  display: block;
+  /* background: #48cfad; */
+  padding: 15px 20px;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  transition: 0.2s linear;
+}
+div ul li a:hover {
+  /* background: #37bc9b; */
+}
+div ul li ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 240px;
+  /* border-bottom: 4px solid #48cfad; */
+}
+div ul li ul li {
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+div ul li ul li a {
+  display: block;
+  background: #3a3a3a;
+  padding: 10px 15px;
+}
+div ul li ul li a:first-child {
+  background: #3a3a3a;
+  width: auto;
+  border-left: 4px solid transparent;
+  padding: 10px 15px;
+  font-size: 14px;
+}
+div ul li ul li a:hover {
+  background: #333;
+  border-left: 4px solid #48cfad;
+}
+/*----------------------------------------*/
+
+a:link, a:visited { text-decoration:none; color:#000; }
+#content{ padding:20px 0; min-width:860px; }
+img { vertical-align:middle; }
+
+table {
+	width:80%;
+	margin:0 auto;
+	border:1px solid;
+	border-collapse:collapse; 
+}
+table th, table td { 
+	border:1px solid;
+	padding: 5px 10px; 
+}
+table tr td a:hover, ul.grid li div:first-child a:hover{ font-weight:bold; } 
+
+.btnSet { margin-top:20px; }
+a.btn-fill, a.btn-empty {
+	text-align:center;
+	padding: 3px 10px;
+	border:1px solid #3367d6;
+	border-radius:3px; 
+	box-shadow:2px 2px 3px #022d72; 
+}
+a.btn-fill { 
+	background-color: #3367d6;
+	color: #fff;
+}
+a.btn-empty {
+	background-color: #fff;
+	color: #3367d6;
+}
+
+a.btn-fill-s, a.btn-empty-s {
+	font-size: 13px; font-weight: bold; 
+	text-align: center; padding: 1px 10px;
+	border: 1px solid #c4dafc;
+	border-radius: 3px;
+	box-shadow: 2px 2px 2px #033d72;
+	color: #0000cd;
+}
+
+a.btn-fill-s { background-color: #b1cdfa;}
+a.btn-empty-s { background-color : #fff; }
+a { cursor:pointer;}
+
+input {
+	height:22px; padding: 5px 10px;
+	font-size:15px;  
+}
+input[type=radio] { 
+	width:18px;  vertical-align:middle;
+	margin:0 5px 3px;
+}
+table tr td label:not(:first-child) { margin-left:20px; }
+
+ul { list-style:none; padding:0; }
+#list-top { padding:20px 10%; }
+#list-top { height: 36px }
+#list-top ul { margin:0; display:flex; }
+#list-top ul li:not(:first-child) { margin-left:3px; }
+#list-top ul li * { vertical-align:middle; } 
+#list-top ul:first-child { float: left;}
+#list-top ul:last-child { float: right;}
+
+
+select { height:32px; }
+.left { text-align: left;}
+.right { text-align: right;}
+
+input[name=title] {width:calc(100% - 24px)}
+textarea[name=content] {width:calc(100% - 6px); resize: none; height: 150px;}
+
+
+.file-img {width:22px }
+#attach-file, #delete-file { display: none;}
+#delete-file {color:red;}
+
+.w-pct80 { width:80% }
+.w-pct60 { width:60% }
+.w-pct50 { width:50% }
+.w-pct40 { width:40% }
+.w-px300 { width:300px; }
+.w-px200 { width:200px; }
+.w-px250 { width:200px; }
+.w-px100 { width:100px; }
+.w-px80 { width:80px; }
+.w-px60 { width:60px; }
+.w-px40 { width:40px; }
+.w-px180 { width:180px; }
+.w-px160 { width:160px; }
+.w-px140 { width:140px; }
+.w-px120 { width:120px; }
+
+
+/* 21/02/23 이후 변경사항 */
+/* 중간에 있는 배경색들 없앰 */
+#popup {
+	position : absolute; left:50%; top:50%; transform:translate(-50%, -50%);
+	width:350px; height: 350px;
+	border: 2px solid #666; display: none;
+}
+.popup { width: 100%; height: 100%;}
+#comment_regist span {width:50%; float: left;}
+#popup-background{
+	position:absolute; left:0; top:0; width:100%; height:100%; 
+	background-color:#000; opacity:0.3;  display:none; 
+}
+/* 그리드,, 중간에서 옮겨옴 */
+ul.grid {width:80%; margin:0 10% }
+.grid li {float: left; width: 32.5%; height: 270px; 
+					border: 1px solid gray; box-sizing: border-box;}
+.grid li div { text-align: left; padding: 10px; display: block;
+							width:240px; height: 200px; font-weight: bold;}
+.grid li div img {  width:240px; height: 200px;
+							box-sizing: border-box; }
+.grid li:not(:nth-child(3n)) {margin: 0 1.25% 20px 0}
+.grid li div:nth-child(2) {padding:0 10px}
+
+input[name=board_subject] {width:calc(100% - 24px)}
+textarea[name=board_content] {width:calc(100% - 6px); resize: none; height: 150px;}

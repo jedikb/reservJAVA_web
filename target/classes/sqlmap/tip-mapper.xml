@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="tip.mapper">
+
+<update id="comment_delete">
+	update tbl_board_reply
+	set reply_status = 0
+  where reply_code = #{reply_code}
+</update>
+
+<update id="comment_update">
+	update tbl_board_reply 
+	set reply_content = #{reply_content}, reply_update_date = sysdate 
+	where reply_code = #{reply_code}
+</update>
+
+<insert id="comment_insert">
+	insert into tbl_board_reply ( reply_sub_code, reply_content, reply_member_code, reply_write_date, reply_update_date )
+	values ( #{reply_sub_code}, #{reply_content}, #{reply_member_code}, sysdate, sysdate )
+</insert>
+
+<select id="comment_list" resultType="tip.TipCommentVO">
+	select (select member_name from tbl_member m where m.member_code=reply_member_code) member_name, 
+		   to_char(reply_update_date, 'yyyy-mm-dd hh24:mi:ss') reply_update_date, c.* 
+	from tbl_board_reply c
+	where reply_sub_code = #{reply_sub_code}
+		and reply_status = 1
+	order by reply_code desc
+</select>
+
+
+<update id="update">
+	update tbl_board set board_subject = #{board_subject}, board_content = #{board_content}, board_update_date = sysdate
+									, board_file = #{board_file, jdbcType=VARCHAR}
+									, board_filepath = #{board_filepath, jdbcType=VARCHAR}
+	where board_code = #{board_code}
+</update>
+
+<delete id="delete">
+	delete from tbl_board where board_code = #{board_code}
+</delete>
+
+<update id="read">
+	update tbl_board set board_readcount = board_readcount+1 where board_code = #{board_code}
+</update>
+
+<select id="view" resultType="tip.TipVO">
+	select b.*, (select member_name from tbl_member m
+							 where m.member_code=board_member_code) member_name 
+	from tbl_board b
+	where board_code = #{board_code}
+</select>
+
+<insert id="insert">
+	insert into tbl_board (board_group_code, board_member_code, board_subject, board_content, board_write_date, board_update_date, board_file, board_filepath)
+	values (4, #{board_member_code}, #{board_subject}, #{board_content}, sysdate, sysdate
+					, #{board_file, jdbcType=VARCHAR}
+					, #{board_filepath, jdbcType=VARCHAR})
+</insert>
+
+<select id="list" resultType="tip.TipVO">
+	select b.*, (select member_name from tbl_member m where m.member_code=board_member_code) member_name
+	from (select b.*, rownum no from 
+			 (select * from tbl_board 
+				 where (board_status = 1 and board_group_code = 4)
+				 and (<include refid="search_where" />)
+		order by board_code) b) b
+  	where no between #{beginList} and #{endList}
+	order by board_code desc
+</select>
+
+<select id="totalList" resultType="integer">
+	select count(*) from tbl_board where 	(board_status = 1 and board_group_code = 4)
+	and (<include refid="search_where" />)
+</select>
+
+<!-- 검색(제목, 내용, 작성자) -->
+<sql id="search_where">
+	<if test="search == 'board_subject' or search == 'board_content' ">
+		${search} like '%' || #{keyword} || '%'
+	</if>
+	<if test="search == 'member_name'">
+		<include refid="writer_where" />
+	</if>
+	<if test="search == 'all'">
+		board_subject like '%' || #{keyword} || '%'
+		or board_content  like '%' || #{keyword} || '%'
+		or <include refid="writer_where"/>
+	</if>
+</sql> 
+<!-- 작성자 검색, 여러 곳에서 쓰이기 때문에 빼놓음 -->
+<sql id='writer_where'>
+	board_member_code in (select member_code from tbl_member 
+							where member_name like '%' || #{keyword} || '%' )
+</sql>
+
+</mapper>
